@@ -21,6 +21,7 @@
     android:layout_height="@dimen/dashboard_category_height"
     android:clickable="true"
     android:focusable="true"
+    android:visibility="gone"
     android:background="@drawable/selectable_card_grey"
     android:gravity="center_vertical"
     android:paddingTop="4dp">

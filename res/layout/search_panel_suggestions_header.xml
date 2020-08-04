@@ -20,7 +20,7 @@
           android:paddingStart="@dimen/search_title_padding_start"
           android:singleLine="true"
           android:ellipsize="marquee"
-          android:visibility="invisible"
+          android:visibility="gone"
           android:gravity="center_vertical"
           android:textAppearance="@style/TextAppearance.RecentsTitle"
           android:textAlignment="viewStart"

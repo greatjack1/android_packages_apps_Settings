@@ -20,6 +20,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/selectable_card_grey"
     android:clickable="true"
+    android:visibility="gone"
     android:focusable="true"
     android:gravity="center_vertical"
     android:minHeight="@dimen/dashboard_tile_minimum_height">
