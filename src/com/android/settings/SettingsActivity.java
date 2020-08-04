@@ -1100,28 +1100,27 @@ public class SettingsActivity extends SettingsDrawerActivity
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.DataUsageSummaryActivity.class.getName()),
-                Utils.isBandwidthControlEnabled(), isAdmin, pm);
+               false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.RoamingSettingsActivity.class.getName()),
-                getResources().getBoolean(R.bool.config_roamingsettings_enabled), isAdmin, pm);
+                false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.SimSettingsActivity.class.getName()),
-                Utils.showSimCardTile(this), isAdmin, pm);
+               false), isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.PowerUsageSummaryActivity.class.getName()),
-                mBatteryPresent, isAdmin, pm);
+                false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.UserSettingsActivity.class.getName()),
-                UserHandle.MU_ENABLED && UserManager.supportsMultipleUsers()
-                && !Utils.isMonkeyRunning(), isAdmin, pm);
+                false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                         Settings.WirelessSettingsActivity.class.getName()),
-                !UserManager.isDeviceInDemoMode(this), isAdmin, pm);
+                false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                         Settings.DateTimeSettingsActivity.class.getName()),
@@ -1134,17 +1133,12 @@ public class SettingsActivity extends SettingsDrawerActivity
                         && adapter != null && adapter.isEnabled(), isAdmin, pm);
         setTileEnabled(new ComponentName(packageName,
                 Settings.PrintSettingsActivity.class.getName()),
-                pm.hasSystemFeature(PackageManager.FEATURE_PRINTING), isAdmin, pm);
+                false, isAdmin, pm);
 
-        final boolean showDev = mDevelopmentPreferences.getBoolean(
-                    DevelopmentSettings.PREF_SHOW, android.os.Build.TYPE.equals("eng"))
-                && !um.hasUserRestriction(UserManager.DISALLOW_DEBUGGING_FEATURES);
-        setTileEnabled(new ComponentName(packageName,
-                        Settings.DevelopmentSettingsActivity.class.getName()),
-                showDev, isAdmin, pm);
+
 
         // Reveal development-only quick settings tiles
-        DevelopmentTiles.setTilesEnabled(this, showDev);
+        DevelopmentTiles.setTilesEnabled(this, false);
 
         // Show scheduled power on and off if support
         boolean showTimerSwitch = false;
@@ -1158,7 +1152,7 @@ public class SettingsActivity extends SettingsDrawerActivity
                 Settings.TimerSwitchSettingsActivity.class.getName()),
                 showTimerSwitch, isAdmin, pm);
 
-        if (UserHandle.MU_ENABLED && !isAdmin) {
+    
             // When on restricted users, disable all extra categories (but only the settings ones).
             List<DashboardCategory> categories = getDashboardCategories();
             for (DashboardCategory category : categories) {
@@ -1170,12 +1164,11 @@ public class SettingsActivity extends SettingsDrawerActivity
                     }
                 }
             }
-        }
 
         String backupIntent = getResources().getString(R.string.config_backup_settings_intent);
         boolean useDefaultBackup = TextUtils.isEmpty(backupIntent);
         setTileEnabled(new ComponentName(packageName,
-                Settings.PrivacySettingsActivity.class.getName()), useDefaultBackup, isAdmin, pm);
+                Settings.PrivacySettingsActivity.class.getName()), false, isAdmin, pm);
         boolean hasBackupActivity = false;
         if (!useDefaultBackup) {
             try {
@@ -1186,7 +1179,7 @@ public class SettingsActivity extends SettingsDrawerActivity
             }
         }
         setTileEnabled(new ComponentName(packageName,
-                BackupSettingsActivity.class.getName()), hasBackupActivity,
+                BackupSettingsActivity.class.getName()), false,
                 isAdmin || Utils.isCarrierDemoUser(this), pm);
 
     }
