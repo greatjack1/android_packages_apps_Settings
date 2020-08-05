@@ -1108,7 +1108,7 @@ public class SettingsActivity extends SettingsDrawerActivity
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.SimSettingsActivity.class.getName()),
-               false), isAdmin, pm);
+               false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
                 Settings.PowerUsageSummaryActivity.class.getName()),
