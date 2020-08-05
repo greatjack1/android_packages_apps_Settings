@@ -222,10 +222,10 @@ public class SettingsActivity extends SettingsDrawerActivity
     public static final String EXTRA_LAUNCH_ACTIVITY_ACTION = ":settings:launch_activity_action";
 
     public static final String META_DATA_KEY_FRAGMENT_CLASS =
-        "com.android.settings.FRAGMENT_CLASS";
+            "com.android.settings.FRAGMENT_CLASS";
 
     public static final String META_DATA_KEY_LAUNCH_ACTIVITY_ACTION =
-        "com.android.settings.ACTIVITY_ACTION";
+            "com.android.settings.ACTIVITY_ACTION";
 
     private static final String EXTRA_UI_OPTIONS = "settings:ui_options";
 
@@ -548,11 +548,11 @@ public class SettingsActivity extends SettingsDrawerActivity
         final Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_LAUNCH_ACTIVITY_ACTION)) {
             if (mActivityAction != null) {
-               try{
-                   startActivity(new Intent(mActivityAction));
-               }catch(ActivityNotFoundException e){
-                   Log.w(LOG_TAG, "Activity not found for action: " + mActivityAction);
-               }
+                try {
+                    startActivity(new Intent(mActivityAction));
+                } catch (ActivityNotFoundException e) {
+                    Log.w(LOG_TAG, "Activity not found for action: " + mActivityAction);
+                }
             }
             finish();
             return;
@@ -686,21 +686,21 @@ public class SettingsActivity extends SettingsDrawerActivity
             if (buttonBar != null) {
                 buttonBar.setVisibility(View.VISIBLE);
 
-                Button backButton = (Button)findViewById(R.id.back_button);
+                Button backButton = (Button) findViewById(R.id.back_button);
                 backButton.setOnClickListener(new OnClickListener() {
                     public void onClick(View v) {
                         setResult(RESULT_CANCELED, getResultIntentData());
                         finish();
                     }
                 });
-                Button skipButton = (Button)findViewById(R.id.skip_button);
+                Button skipButton = (Button) findViewById(R.id.skip_button);
                 skipButton.setOnClickListener(new OnClickListener() {
                     public void onClick(View v) {
                         setResult(RESULT_OK, getResultIntentData());
                         finish();
                     }
                 });
-                mNextButton = (Button)findViewById(R.id.next_button);
+                mNextButton = (Button) findViewById(R.id.next_button);
                 mNextButton.setOnClickListener(new OnClickListener() {
                     public void onClick(View v) {
                         setResult(RESULT_OK, getResultIntentData());
@@ -713,8 +713,7 @@ public class SettingsActivity extends SettingsDrawerActivity
                     String buttonText = intent.getStringExtra(EXTRA_PREFS_SET_NEXT_TEXT);
                     if (TextUtils.isEmpty(buttonText)) {
                         mNextButton.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
                         mNextButton.setText(buttonText);
                     }
                 }
@@ -722,8 +721,7 @@ public class SettingsActivity extends SettingsDrawerActivity
                     String buttonText = intent.getStringExtra(EXTRA_PREFS_SET_BACK_TEXT);
                     if (TextUtils.isEmpty(buttonText)) {
                         backButton.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
                         backButton.setText(buttonText);
                     }
                 }
@@ -856,7 +854,7 @@ public class SettingsActivity extends SettingsDrawerActivity
 
         mDynamicIndexableContentMonitor.register(this, LOADER_ID_INDEXABLE_CONTENT_MONITOR);
 
-        if(mDisplaySearch && !TextUtils.isEmpty(mSearchQuery)) {
+        if (mDisplaySearch && !TextUtils.isEmpty(mSearchQuery)) {
             onQueryTextSubmit(mSearchQuery);
         }
         updateTilesList();
@@ -944,20 +942,20 @@ public class SettingsActivity extends SettingsDrawerActivity
      * single-pane mode, a new activity will be launched in which to show the
      * fragment.
      *
-     * @param fragmentClass Full name of the class implementing the fragment.
-     * @param args Any desired arguments to supply to the fragment.
-     * @param titleRes Optional resource identifier of the title of this
-     * fragment.
-     * @param titleText Optional text of the title of this fragment.
-     * @param resultTo Optional fragment that result data should be sent to.
-     * If non-null, resultTo.onActivityResult() will be called when this
-     * preference panel is done.  The launched panel must use
-     * {@link #finishPreferencePanel(Fragment, int, Intent)} when done.
+     * @param fragmentClass     Full name of the class implementing the fragment.
+     * @param args              Any desired arguments to supply to the fragment.
+     * @param titleRes          Optional resource identifier of the title of this
+     *                          fragment.
+     * @param titleText         Optional text of the title of this fragment.
+     * @param resultTo          Optional fragment that result data should be sent to.
+     *                          If non-null, resultTo.onActivityResult() will be called when this
+     *                          preference panel is done.  The launched panel must use
+     *                          {@link #finishPreferencePanel(Fragment, int, Intent)} when done.
      * @param resultRequestCode If resultTo is non-null, this is the caller's
-     * request code to be received with the result.
+     *                          request code to be received with the result.
      */
     public void startPreferencePanel(String fragmentClass, Bundle args, int titleRes,
-            CharSequence titleText, Fragment resultTo, int resultRequestCode) {
+                                     CharSequence titleText, Fragment resultTo, int resultRequestCode) {
         String title = null;
         if (titleRes < 0) {
             if (titleText != null) {
@@ -978,13 +976,13 @@ public class SettingsActivity extends SettingsDrawerActivity
      * activity will be launched in which to show the fragment.
      *
      * @param fragmentClass Full name of the class implementing the fragment.
-     * @param args Any desired arguments to supply to the fragment.
-     * @param titleRes Optional resource identifier of the title of this fragment.
-     * @param titleText Optional text of the title of this fragment.
-     * @param userHandle The user for which the panel has to be started.
+     * @param args          Any desired arguments to supply to the fragment.
+     * @param titleRes      Optional resource identifier of the title of this fragment.
+     * @param titleText     Optional text of the title of this fragment.
+     * @param userHandle    The user for which the panel has to be started.
      */
     public void startPreferencePanelAsUser(String fragmentClass, Bundle args, int titleRes,
-            CharSequence titleText, UserHandle userHandle) {
+                                           CharSequence titleText, UserHandle userHandle) {
         // This is a workaround.
         //
         // Calling startWithFragmentAsUser() without specifying FLAG_ACTIVITY_NEW_TASK to the intent
@@ -1015,11 +1013,11 @@ public class SettingsActivity extends SettingsDrawerActivity
     /**
      * Called by a preference panel fragment to finish itself.
      *
-     * @param caller The fragment that is asking to be finished.
+     * @param caller     The fragment that is asking to be finished.
      * @param resultCode Optional result code to send back to the original
-     * launching fragment.
+     *                   launching fragment.
      * @param resultData Optional result data to send back to the original
-     * launching fragment.
+     *                   launching fragment.
      */
     public void finishPreferencePanel(Fragment caller, int resultCode, Intent resultData) {
         setResult(resultCode, resultData);
@@ -1030,8 +1028,8 @@ public class SettingsActivity extends SettingsDrawerActivity
      * Start a new fragment.
      *
      * @param fragment The fragment to start
-     * @param push If true, the current fragment will be pushed onto the back stack.  If false,
-     * the current fragment will be replaced.
+     * @param push     If true, the current fragment will be pushed onto the back stack.  If false,
+     *                 the current fragment will be replaced.
      */
     public void startPreferenceFragment(Fragment fragment, boolean push) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -1049,7 +1047,7 @@ public class SettingsActivity extends SettingsDrawerActivity
      * Switch to a specific Fragment with taking care of validation, Title and BackStack
      */
     private Fragment switchToFragment(String fragmentName, Bundle args, boolean validate,
-            boolean addToBackStack, int titleResId, CharSequence title, boolean withTransition) {
+                                      boolean addToBackStack, int titleResId, CharSequence title, boolean withTransition) {
         if (validate && !isValidFragment(fragmentName)) {
             throw new IllegalArgumentException("Invalid fragment for this activity: "
                     + fragmentName);
@@ -1095,27 +1093,68 @@ public class SettingsActivity extends SettingsDrawerActivity
                 pm.hasSystemFeature(PackageManager.FEATURE_WIFI), isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
-                Settings.BluetoothSettingsActivity.class.getName()),
+                        Settings.BluetoothSettingsActivity.class.getName()),
                 pm.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH), isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
-                Settings.DataUsageSummaryActivity.class.getName()),
-               false, isAdmin, pm);
-
-        setTileEnabled(new ComponentName(packageName,
-                Settings.RoamingSettingsActivity.class.getName()),
+                        Settings.DataUsageSummaryActivity.class.getName()),
                 false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
-                Settings.SimSettingsActivity.class.getName()),
-               false), isAdmin, pm);
-
-        setTileEnabled(new ComponentName(packageName,
-                Settings.PowerUsageSummaryActivity.class.getName()),
+                        Settings.ConfigureNotificationSettingsActivity.class.getName()),
                 false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
-                Settings.UserSettingsActivity.class.getName()),
+                        Settings.NotificationAppListActivity.class.getName()),
+                false, isAdmin, pm);
+
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.PowerUsageSummaryActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.UserSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.GestureSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.LocationSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.SecuritySettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.AccountSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.InputMethodAndLanguageSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.PrivacySettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.AccessibilitySettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.PrintSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.DeviceInfoSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.RoamingSettingsActivity.class.getName()),
+                false, isAdmin, pm);
+
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.SimSettingsActivity.class.getName()),
+                false), isAdmin, pm);
+
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.PowerUsageSummaryActivity.class.getName()),
+                false, isAdmin, pm);
+
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.UserSettingsActivity.class.getName()),
                 false, isAdmin, pm);
 
         setTileEnabled(new ComponentName(packageName,
@@ -1132,9 +1171,8 @@ public class SettingsActivity extends SettingsDrawerActivity
                         && pm.hasSystemFeature(PackageManager.FEATURE_NFC_HOST_CARD_EMULATION)
                         && adapter != null && adapter.isEnabled(), isAdmin, pm);
         setTileEnabled(new ComponentName(packageName,
-                Settings.PrintSettingsActivity.class.getName()),
+                        Settings.PrintSettingsActivity.class.getName()),
                 false, isAdmin, pm);
-
 
 
         // Reveal development-only quick settings tiles
@@ -1149,21 +1187,21 @@ public class SettingsActivity extends SettingsDrawerActivity
             showTimerSwitch = true;
         }
         setTileEnabled(new ComponentName(packageName,
-                Settings.TimerSwitchSettingsActivity.class.getName()),
+                        Settings.TimerSwitchSettingsActivity.class.getName()),
                 showTimerSwitch, isAdmin, pm);
 
-    
-            // When on restricted users, disable all extra categories (but only the settings ones).
-            List<DashboardCategory> categories = getDashboardCategories();
-            for (DashboardCategory category : categories) {
-                for (Tile tile : category.tiles) {
-                    ComponentName component = tile.intent.getComponent();
-                    if (packageName.equals(component.getPackageName()) && !ArrayUtils.contains(
-                            SETTINGS_FOR_RESTRICTED, component.getClassName())) {
-                        setTileEnabled(component, false, isAdmin, pm);
-                    }
+
+        // When on restricted users, disable all extra categories (but only the settings ones).
+        List<DashboardCategory> categories = getDashboardCategories();
+        for (DashboardCategory category : categories) {
+            for (Tile tile : category.tiles) {
+                ComponentName component = tile.intent.getComponent();
+                if (packageName.equals(component.getPackageName()) && !ArrayUtils.contains(
+                        SETTINGS_FOR_RESTRICTED, component.getClassName())) {
+                    setTileEnabled(component, false, isAdmin, pm);
                 }
             }
+        }
 
         String backupIntent = getResources().getString(R.string.config_backup_settings_intent);
         boolean useDefaultBackup = TextUtils.isEmpty(backupIntent);
@@ -1179,7 +1217,7 @@ public class SettingsActivity extends SettingsDrawerActivity
             }
         }
         setTileEnabled(new ComponentName(packageName,
-                BackupSettingsActivity.class.getName()), false,
+                        BackupSettingsActivity.class.getName()), false,
                 isAdmin || Utils.isCarrierDemoUser(this), pm);
 
     }
@@ -1356,14 +1394,15 @@ public class SettingsActivity extends SettingsDrawerActivity
 
     private boolean isLockTaskModePinned() {
         final ActivityManager activityManager =
-            getApplicationContext().getSystemService(ActivityManager.class);
+                getApplicationContext().getSystemService(ActivityManager.class);
         return activityManager.getLockTaskModeState() == ActivityManager.LOCK_TASK_MODE_PINNED;
     }
+
     private boolean isSettingsRunOnTop() {
         final ActivityManager activityManager =
-            getApplicationContext().getSystemService(ActivityManager.class);
+                getApplicationContext().getSystemService(ActivityManager.class);
         final String taskPkgName = activityManager.getRunningTasks(1 /* maxNum */)
-            .get(0 /* index */).baseActivity.getPackageName();
+                .get(0 /* index */).baseActivity.getPackageName();
         return TextUtils.equals(getPackageName(), taskPkgName);
     }
 }
