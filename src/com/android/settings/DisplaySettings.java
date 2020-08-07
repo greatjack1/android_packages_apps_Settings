@@ -123,11 +123,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 findPreference(KEY_CATEGORY_DISPLAY);
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
-        if (mScreenSaverPreference != null
-                && getResources().getBoolean(
-                        com.android.internal.R.bool.config_dreamsSupported) == false) {
             getPreferenceScreen().removePreference(mScreenSaverPreference);
-        }
 
         mScreenTimeoutPreference = (TimeoutListPreference) findPreference(KEY_SCREEN_TIMEOUT);
         mFontSizePref = findPreference(KEY_FONT_SIZE);
