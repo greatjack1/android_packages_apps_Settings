@@ -604,6 +604,9 @@ public class ManageApplications extends InstrumentedFragment
         if (mApplications != null && mApplications.getCount() > position) {
             ApplicationsState.AppEntry entry = mApplications.getAppEntry(position);
             mCurrentPkgName = entry.info.packageName;
+            if(mCurrentPkgName.contains("powerstub")){
+                return;
+            }
             mCurrentUid = entry.info.uid;
             startApplicationDetailsActivity();
         }
